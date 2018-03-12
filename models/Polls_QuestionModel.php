@@ -21,7 +21,8 @@ class Polls_QuestionModel extends BaseElementModel
 	{
 		if (!isset($this->_options))
 		{
-			$this->_options = craft()->polls_options->getOptionsByQuestionId($this->id);
+			// hooked up localisation
+			$this->_options = craft()->polls_options->getOptionsByQuestionId($this->id, $this->locale);
 		}
 		return $this->_options;
 	}

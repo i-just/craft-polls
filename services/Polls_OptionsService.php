@@ -17,9 +17,15 @@ class Polls_OptionsService extends BaseApplicationComponent
 		return craft()->elements->getElementById($optionId, Polls_ElementType::Option, $localeId);
 	}
 
-	public function getOptionsByQuestionId($questionId)
+	public function getOptionsByQuestionId($questionId, $localeId = null)
 	{
 		$params = array('questionId' => $questionId);
+
+		// hooked up localisation
+		if ($localeId !== null) {
+		    $params['locale'] = $localeId;
+        }
+
 		$criteria = craft()->elements->getCriteria(Polls_ElementType::Option, $params);
 		return $criteria->find();
 	}

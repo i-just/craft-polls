@@ -20,9 +20,16 @@ class Polls_OptionsController extends BaseController
 			$variables['poll'] = craft()->polls->getPollById($variables['pollId']);
 		}
 
+		// hook up the selected locale
+        if (!empty($variables['localeId'])) {
+		    $localeId = $variables['localeId'];
+        } else {
+		    $localeId = craft()->getLanguage();
+        }
+
 		if (!empty($variables['questionId']))
 		{
-			$variables['question'] = craft()->polls_questions->getQuestionById($variables['questionId']);
+			$variables['question'] = craft()->polls_questions->getQuestionById($variables['questionId'], $localeId);
 
 			if (!$variables['question'])
 			{
@@ -58,9 +65,16 @@ class Polls_OptionsController extends BaseController
 			$variables['poll'] = craft()->polls->getPollById($variables['pollId']);
 		}
 
+		// hook up the selected locale
+        if (!empty($variables['localeId'])) {
+            $localeId = $variables['localeId'];
+        } else {
+            $localeId = craft()->getLanguage();
+        }
+
 		if (!empty($variables['questionId']))
 		{
-			$variables['question'] = craft()->polls_questions->getQuestionById($variables['questionId']);
+			$variables['question'] = craft()->polls_questions->getQuestionById($variables['questionId'], $localeId);
 
 			if (!$variables['question'])
 			{
@@ -266,6 +280,8 @@ class Polls_OptionsController extends BaseController
 		$option->questionId = craft()->request->getPost('questionId', $option->questionId);
 		$option->typeId = craft()->request->getPost('typeId', $option->typeId);
 		$option->kind = craft()->request->getPost('kind', $option->kind);
+		// hook up the current locale
+		$option->locale = $localeId;
 
 		$option->getContent()->title = craft()->request->getPost('title', $option->title);
 		$option->setContentFromPost('fields');

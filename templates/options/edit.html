@@ -11,7 +11,8 @@
 {% block main %}
 	<form id="option-form" method="post" accept-charset="UTF-8" data-saveshortcut="1" data-saveshortcut-redirect="{{ continueEditingUrl }}">
 		<input type="hidden" name="action" value="polls/options/saveOption">
-		<input type="hidden" name="redirect" value="polls/{{ poll.handle }}{{ questionSegment }}/options">
+		{# make sure redirect works regardless of the locale #}
+		<input type="hidden" name="redirect" value="polls/{{ poll.handle }}{{ questionSegment }}/{{ option.locale }}/options">
 		{% if question is defined %}
 			<input type="hidden" name="questionId" value="{{ question.id }}">
 		{% endif %}

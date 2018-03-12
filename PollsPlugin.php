@@ -53,6 +53,10 @@ class PollsPlugin extends BasePlugin
 	{
 		return array(
 
+			// list answers in non-primary locale
+            'polls/(?P<pollHandle>{handle})/questions/(?P<questionId>\d+)/(?P<localeId>\w+)/answers'
+                => array('action' => 'polls/answers/answersIndex'),
+
 			'polls/(?P<pollHandle>{handle})/questions/(?P<questionId>\d+)/answers'	
 				=> array('action' => 'polls/answers/answersIndex'),
 
@@ -67,6 +71,10 @@ class PollsPlugin extends BasePlugin
 
 			'polls/(?P<pollHandle>{handle})/questions/(?P<questionId>\d+)/options/new'	
 				=> array('action' => 'polls/options/editOption'),
+
+			// list options in non-primary locale
+            'polls/(?P<pollHandle>{handle})/questions/(?P<questionId>\d+)/(?P<localeId>\w+)/options'
+                => array('action' => 'polls/options/optionsIndex'),
 
 			'polls/(?P<pollHandle>{handle})/questions/(?P<questionId>\d+)/options'	
 				=> array('action' => 'polls/options/optionsIndex'),

@@ -70,10 +70,13 @@
 				<td class="thin"></td>
 			</thead>
 			<tbody>
+				{% if localeId is not defined %}
+					{% set localeId = null %}
+				{% endif %}
 				{% for answer in answers %}
 					<tr data-id="{{ answer.id }}" data-name="Answer {{ answer.id }}">
 						<th scope="row" data-title="{{ 'ID'|t }}">{{ answer.id }}</th>
-						<td scope="row" data-title="{{ 'Option'|t }}"><a href="{{ answer.option.getCpEditUrl() }}">{{ answer.option.title }}</a></td>
+						<td scope="row" data-title="{{ 'Option'|t }}"><a href="{{ answer.option(localeId).getCpEditUrl() }}">{{ answer.option(localeId).title }}</a></td>
 						<td scope="row" data-title="{{ 'User'|t }}">
 							{% if answer.user %}
 							    <a href="{{ answer.user.getCpEditUrl() }}">{{ answer.user.username }}</a>

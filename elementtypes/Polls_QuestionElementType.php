@@ -175,7 +175,8 @@ class Polls_QuestionElementType extends BaseElementType
 		{
 			case 'options':
 			{
-				$question = craft()->polls_questions->getQuestionById($element->id);
+				// hook up the current locale
+				$question = craft()->polls_questions->getQuestionById($element->id, $element->locale);
 				$optionsCount = count($question->options);
 				$params = array(
 					'url' => $question->getCpEditUrl().'/options',
@@ -204,7 +205,8 @@ class Polls_QuestionElementType extends BaseElementType
 
 			case 'results':
 			{
-				$question = craft()->polls_questions->getQuestionById($element->id);
+				// hook up the current locale
+				$question = craft()->polls_questions->getQuestionById($element->id, $element->locale);
 				$params = array(
 					'url' => $question->getCpEditUrl().'/answers',
 					'count' => $question->totalAnswers,

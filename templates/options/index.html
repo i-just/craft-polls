@@ -5,7 +5,8 @@
 
 {% block sidebar %}
 	<div class="buttons">
-		<a class="btn submit add icon" href="{{ url('polls/'~poll.handle~'/questions/'~question.id~'/options/new') }}">{{ "New Option"|t }}</a>
+		{# allow to create new options regardless of the locale #}
+		<a class="btn submit add icon" href="{{ url('polls/'~poll.handle~'/questions/'~question.id~'/options/new/'~question.locale) }}">{{ "New Option"|t }}</a>
 	</div>
 
 	{{ parent() }}

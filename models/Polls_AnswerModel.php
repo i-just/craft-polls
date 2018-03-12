@@ -10,9 +10,10 @@ class Polls_AnswerModel extends BaseModel
 	// Public Methods
 	// =========================================================================
 
-	public function getOption()
+	public function getOption($localeId = null)
 	{
-		return craft()->polls_options->getOptionById($this->optionId);
+		// hooked up localisation
+		return craft()->polls_options->getOptionById($this->optionId, $localeId);
 	}
 
 	public function getUser()

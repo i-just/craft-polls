@@ -139,7 +139,8 @@ class Polls_OptionModel extends BaseElementModel
 	 */
 	public function getQuestion()
 	{
-		return craft()->polls_questions->getQuestionById($this->questionId);
+		// hook up the current locale
+		return craft()->polls_questions->getQuestionById($this->questionId, $this->locale);
 	}
 
 	/**
